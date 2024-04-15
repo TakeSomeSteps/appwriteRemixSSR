@@ -24,3 +24,5 @@ APPWRITE_DATABASE_ID=some_database_id
 APPWRITE_API_AUTH_KEY=some_auth_key
 
 ```
+
+if you want an example remote server that the SSR node-appwrite SDK  doesn't work, contact me!
