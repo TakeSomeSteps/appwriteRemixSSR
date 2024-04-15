@@ -26,3 +26,11 @@ APPWRITE_API_AUTH_KEY=some_auth_key
 ```
 
 if you want an example remote server that the SSR node-appwrite SDK  doesn't work, contact me!
+
+# just in case you're new here
+
+1. clone the project (`git clone ...`)
+2. run `npm install`
+3. create a new file called `.env` - you can see `.env.example`
+4. change these to your appwrite instance
+5. run `npm run dev`
