@@ -3,14 +3,12 @@ import { useLoaderData } from "@remix-run/react";
 import LoginFormPostBackend from "~/components/LoginFormPostBackend";
 import { authenticator, authenticatorError } from "~/auth/auth.server";
 import { commitSession, getSession } from "~/auth/session.server";
-import LoginForm from "~/components/LoginForm";
-import { envAllVars } from "~/backend/envVars";
 import { API_FETCH_AUTH_NAME_PASS_STRATEGY } from "~/auth";
 
 
 export const meta: MetaFunction = () => {
   return [
-    { title: "SDK Login" },
+    { title: "FETCH Login" },
     { name: "description", content: "Login To change the future!" },
   ];
 };

@@ -1,8 +1,9 @@
-import sdk from 'node-appwrite';
+// import sdk from 'node-appwrite';
+import { Client } from "node-appwrite";
 import { envAllVars } from "~/backend/envVars";
 
 
-// let client = new sdk.Client();
+// let client = new Client();
 
 
 
@@ -11,15 +12,14 @@ import { envAllVars } from "~/backend/envVars";
 
 // for most cases, i'll just use the inited one.
 export const appwriteBackendInited = () => {
-  let client = new sdk.Client();
+  let client = new Client();
   client
     .setEndpoint(envAllVars.aw_server_endpoint) // Your API Endpoint
     .setProject(envAllVars.aw_projectId) // Your project ID
     .setKey(envAllVars.aw_secret_key) // Your secret API key
 
   if (process.env.NODE_ENV === "development") {
-    client
-      .setSelfSigned() // Use only on dev mode with a self-signed SSL cert
+    client.setSelfSigned(true) // Use only on dev mode with a self-signed SSL cert
   }
   return client;
 };

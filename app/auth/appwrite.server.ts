@@ -1,4 +1,4 @@
-import sdk from 'node-appwrite';
+import { Account, Client } from 'node-appwrite';
 
 
 // create an init function, that will hold the variables for the rest of the functions here
@@ -54,7 +54,7 @@ export class AppwriteServiceClass {
 
   async logout() {
     const client = this.getClientUser();
-    const account = new sdk.Account(client);
+    const account = new Account(client);
     await account.deleteSession("current");
   }
   private checkInited() {
@@ -94,11 +94,11 @@ export class AppwriteServiceClass {
   }
 
 
-  getClient(isInit: boolean = false): sdk.Client {
+  getClient(isInit: boolean = false): Client {
     // On each NEW interaction with the appwrite server, we need to create a new client
 
     this.validateInited();
-    let client = new sdk.Client();
+    let client = new Client();
     client
       .setEndpoint(this.aw_server_endpoint) // Your API Endpoint
       .setProject(this.aw_projectId) // Your project ID
@@ -115,7 +115,7 @@ export class AppwriteServiceClass {
     return client;
   }
 
-  getClientUser(): sdk.Client {
+  getClientUser(): Client {
     const client = this.getClient();
     if (this.aw_client_secret === "") {
       throw new Error("AppwriteServiceClass: aw_client_secret is required")
@@ -124,12 +124,12 @@ export class AppwriteServiceClass {
     return client;
   }
 
-  getAccount(): sdk.Account {
+  getAccount(): Account {
     const client = this.getClient();
 
     // Return the services you need
 
-    return new sdk.Account(client);
+    return new Account(client);
   }
   getDatabaseId() {
     return this.aw_databaseId;
@@ -144,7 +144,5 @@ export class AppwriteServiceClass {
     return this.aw_secret;
   }
 
-
-  sdk: typeof sdk = sdk;
 
 }

@@ -4,6 +4,7 @@ import { UserClientModel } from "./User";
 import { AppwriteServiceClass } from "./appwrite.server";
 import { SDK_AUTH_NAME_PASS_STRATEGY } from "../constants/constants";
 import { FormStrategy } from "remix-auth-form";
+import { Account } from "node-appwrite";
 
 
 export const appwrite = new AppwriteServiceClass()
@@ -32,7 +33,7 @@ authenticator.use(
       const client = appwrite.getClient(true);
       console.log("client")
       console.log(client)
-      const account = await new appwrite.sdk.Account(client);
+      const account = await new Account(client);
       console.log("Login user")
       // console.log(email)
       const newSession = await account.createEmailPasswordSession(email as string, password as string)
@@ -49,7 +50,7 @@ authenticator.use(
       console.log(client)
       console.log("newClient")
       console.log(newClient)
-      const userAccount = await new appwrite.sdk.Account(newClient);
+      const userAccount = await new Account(newClient);
       console.log("userAccount:")
       console.log(account)
       console.log("*** VS ***")
@@ -57,7 +58,7 @@ authenticator.use(
 
       const sessionClient = appwrite.getClient(false);
       sessionClient.setSession(newSession.secret);
-      const account22 = new appwrite.sdk.Account(sessionClient);
+      const account22 = new Account(sessionClient);
 
       console.log("--------- Get account info ---------------------------------------------------------------------")
       const user = await account22.get();
